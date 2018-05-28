@@ -160,7 +160,7 @@
       min-width: 593px;
       margin-right: 454px;
       height: 100%;
-      background: url('~assets/loginBg.png') no-repeat;
+      // background: url('~assets/loginBg.png') no-repeat;
       background-size: cover;
       z-index: -1;
 
