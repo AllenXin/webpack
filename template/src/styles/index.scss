@@ -1,0 +1,148 @@
+@import 'element-ui';
+
+body {
+  // background-color: #f2f3fd;
+  font-size: 14px;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  // font-family: Microsoft YaHei, Microsoft Sans Serif, Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Arial, sans-serif;
+  font-family: Microsoft YaHei, Helvetica Neue, Helvetica, PingFang SC, Microsoft Sans Serif, Hiragino Sans GB, Arial, sans-serif;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+a:focus,
+a:active {
+  outline: none;
+}
+
+a,
+a:focus,
+a:hover {
+  cursor: pointer;
+  color: inherit;
+  text-decoration: none;
+}
+
+.clearfix {
+  &:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+  }
+}
+
+// vue router transition css
+.fade-enter-active,
+.fade-leave-active {
+  transition: all .2s ease
+}
+
+.fade-enter,
+.fade-leave-active {
+  opacity: 0;
+}
+
+// main-container全局样式
+.app-main {
+  min-height: 100%
+}
+
+.app-container {
+  padding: 20px;
+}
+
+.svg-icon {
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
+}
+
+.icon-bold {
+  &[class*=" el-icon-"], [class^=el-icon-] {
+    font-weight: 800;
+  }
+
+}
+
+// 隐藏具有 v-cloak 属性的元素
+[v-cloak] { display: none }
+
+.card-container {
+  margin-bottom: 20px;
+  .tool-bar {
+    .el-col{
+      height: 100%;
+    }
+    & /deep/ .el-button {
+      vertical-align: middle;
+    }
+    .serach-con {
+      max-width: 400px;
+    }
+    .serach-but {
+      margin-left: 15px;
+    }
+  }
+}
+
+// form中的icon按钮操作失能样式
+.form-icon {
+  cursor: pointer;
+  color: #d10921;
+  width: 30px;
+  margin-left: 10px;
+  text-align: center;
+  background-color: transparent;
+  border: 0;
+  & i {
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 20px;
+  }
+}
+
+.form-icon-btn-noauth {
+  color: #9b9b9b !important;
+  cursor: not-allowed !important;
+}
+
+// 模糊蒙层
+.blur-content-wrapper {
+  filter: blur(10px);
+  opacity: 0.5;
+  transition: all .4s;
+}
+
+// iconfont symbol引用
+.el-icon-my {
+  width: 1em; height: 1em;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
+}
+
+// placeholder
+::-webkit-input-placeholder{ /*WebKit browsers*/
+  color: #D6D6D6!important;
+  font-size: 12px;
+}
+
+::-ms-input-placeholder{ /*Internet Explorer*/
+  color: #D6D6D6!important;
+  font-size: 12px;
+}

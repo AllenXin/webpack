@@ -31,7 +31,7 @@ module.exports = {
       return templateVersion
     },
   },
-  
+
   prompts: {
     name: {
       when: 'isNotTest',
@@ -52,24 +52,12 @@ module.exports = {
       message: 'Author',
       default: 'PandaCIMS',
     },
-    // build: {
-    //   when: 'isNotTest',
-    //   type: 'list',
-    //   message: 'Vue build',
-    //   choices: [
-    //     {
-    //       name: 'Runtime + Compiler: recommended for most users',
-    //       value: 'standalone',
-    //       short: 'standalone',
-    //     },
-    //     {
-    //       name:
-    //         'Runtime-only: about 6KB lighter min+gzip, but templates (or any Vue-specific HTML) are ONLY allowed in .vue files - render functions are required elsewhere',
-    //       value: 'runtime',
-    //       short: 'runtime',
-    //     },
-    //   ],
-    // },
+    port: {
+      when: 'isNotTest',
+      type: 'string',
+      message: 'Port',
+      default: '8080',
+    },
     router: {
       when: 'isNotTest',
       type: 'confirm',
@@ -101,38 +89,6 @@ module.exports = {
           short: 'none',
         },
       ],
-    },
-    unit: {
-      when: 'isNotTest',
-      type: 'confirm',
-      message: 'Set up unit tests',
-    },
-    runner: {
-      when: 'isNotTest && unit',
-      type: 'list',
-      message: 'Pick a test runner',
-      choices: [
-        {
-          name: 'Jest',
-          value: 'jest',
-          short: 'jest',
-        },
-        {
-          name: 'Karma and Mocha',
-          value: 'karma',
-          short: 'karma',
-        },
-        {
-          name: 'none (configure it yourself)',
-          value: 'noTest',
-          short: 'noTest',
-        },
-      ],
-    },
-    e2e: {
-      when: 'isNotTest',
-      type: 'confirm',
-      message: 'Setup e2e tests with Nightwatch?',
     },
     autoInstall: {
       when: 'isNotTest',
