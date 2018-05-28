@@ -48,9 +48,9 @@
                  class='clickable-link'
                  v-if='scope.row[column.prop]'
                  >
-                {{scope.row[column.prop]}}
+                \{{scope.row[column.prop]}}
               </a>
-              <span v-else='column.formatBeside'>{{column.formatBeside(scope.$index, scope.row)}}</span>
+              <span v-else='column.formatBeside'>\{{column.formatBeside(scope.$index, scope.row)}}</span>
             <!--</el-tooltip>-->
           </template>
         </el-table-column>
@@ -65,7 +65,7 @@
                          :min-width='column.minwidth'>
           <template slot-scope="scope">
             <el-tag v-for='item in scope.row[column.prop]' :key='item.id'>
-              {{item.roleName}}
+              \{{item.roleName}}
             </el-tag>
           </template>
         </el-table-column>
