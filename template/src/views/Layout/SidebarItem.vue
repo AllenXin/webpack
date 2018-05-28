@@ -8,7 +8,7 @@
         <el-menu-item :index="item.path === '/' ? item.path+item.children[0].path : item.path+'/'+item.children[0].path">
           <i v-if='item.icon' :class="item.icon" class='sidebar-item-icon'></i>
           <img class="icon-item" v-if='item.icon' :src="require('assets/'+item.icon+'.png')"/>
-          <span class='title'>{{item.children[0].name}}</span>
+          <span class='title'>\{{item.children[0].name}}</span>
         </el-menu-item>
       </router-link>
 
@@ -16,13 +16,13 @@
       <el-submenu :index="item.name" v-if="!item.noDropdown&&!item.hidden">
         <template slot="title">
           <img v-if='item.icon' :src="require('assets/'+item.icon+'.png')"/>
-          <span class='title'>{{item.name}}</span>
+          <span class='title'>\{{item.name}}</span>
         </template>
         <template v-for="child in item.children" v-if='!child.hidden'>
           <sidebar-item class='menu-indent' v-if='child.children&&child.children.length>0' :routes='[child]'></sidebar-item>
           <router-link v-else class="menu-indent" :to="item.path+'/'+child.path">
             <el-menu-item :index="item.path+'/'+child.path" class='sub-subtitle'>
-              <span class='subtitle'>{{child.name}}</span>
+              <span class='subtitle'>\{{child.name}}</span>
             </el-menu-item>
           </router-link>
         </template>

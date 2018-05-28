@@ -1,6 +1,6 @@
 <template>
   <div class="navbar">
-    <div class="view-name">{{viewNmae}}</div>
+    <div class="view-name">\{{viewNmae}}</div>
   </div>
 </template>
 
