@@ -11,18 +11,12 @@
 </template>
 
 <script>
-
 export default {
   name: 'Homepage',
-  components: {
-    mapInfo
-  }
 }
-
 </script>
 <style rel="stylesheet/scss" lang="scss" scoped>
 .panda-gif{
-  background: url("~assets/timg.gif") no-repeat;
   margin: auto;
 }
 </style>
