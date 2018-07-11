@@ -59,7 +59,7 @@
 
 <script>
   import Cookies from 'js-cookie'
-  import { changeBaseURL } from 'utils/fetch'
+  // import { changeBaseURL } from 'utils/fetch'
   import Aes from 'utils/aesHelper'
 
   export default {
@@ -115,17 +115,17 @@
         this.$refs.loginForm.validate(valid => {
           if (valid) {
             this.loading = true
-            // const tempLoginForm = {
-            //   userName: this.loginForm.userName,
-            //   password: Aes.encrypt(this.loginForm.password)
-            // }
-            // this.$store.dispatch('Login', tempLoginForm).then(() => {
-            //   this.loading = false
-            //   Cookies.set('rcp_LastLoginUsername', this.loginForm.userName)
-            this.$router.push({ path: '/' })
-            // }).catch(() => {
-            //   this.loading = false
-            // })
+            const tempLoginForm = {
+              userName: this.loginForm.userName,
+              password: Aes.encrypt(this.loginForm.password)
+            }
+            this.$store.dispatch('Login', tempLoginForm).then(() => {
+              this.loading = false
+              Cookies.set('', this.loginForm.userName)                       // cookies Name
+              this.$router.push({ path: '/' })
+            }).catch(() => {
+              this.loading = false
+            })
           } else {
             console.log('error submit!!')
             return false
@@ -160,7 +160,7 @@
       min-width: 593px;
       margin-right: 454px;
       height: 100%;
-      background: url('~assets/loginbg.png') no-repeat;
+      // background: url('~assets/loginbg.png') no-repeat;
       background-size: cover;
       z-index: -1;
 

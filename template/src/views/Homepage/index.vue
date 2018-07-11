@@ -6,13 +6,13 @@
 
 <template>
   <div class="card-container">
-    <div class="panda-gif"></div>
+    <div></div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Homepage',
+  name: 'Homepage'
 }
 </script>
 <style rel="stylesheet/scss" lang="scss" scoped>
