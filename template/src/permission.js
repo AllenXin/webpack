@@ -15,8 +15,6 @@ import {getFilters} from 'utils/dataDictionary'
 
 const whiteList = ['/login'] // 不重定向白名单
 
-const nojumpList = [] // 跳转需要验证名单
-
 router.beforeEach((to, from, next) => {
   NProgress.start()
   if (getToken()) { // 如果已经有 Token
@@ -42,21 +40,7 @@ router.beforeEach((to, from, next) => {
           console.error(err, '无权限自动退出 in src/permission.js')
         })
       } else {
-        if (nojumpList.includes(from.path) && from.meta.canjump) {   // 跳转前提示是否保存 todo 放到页面中
-          MessageBox.confirm('是否放弃保存已修改内容？', '提示', {
-            center: true,
-            confirmButtonText: '确定',
-            cancelButtonText: '取消',
-            type: 'warning'
-          }).then(() => {
-            next()
-          }).catch(() => {
-            NProgress.done()
-            next(false)
-          })
-        } else {
-          next()
-        }
+        next()
       }
     }
   } else { // 没有 Token 的话
