@@ -1,3 +1,9 @@
+/**
+ * 创建于 2018/9/1
+ * 作者: PandaCIMS
+ * 功能: AES加密
+ */
+
 import CryptoJS from 'crypto-js'
 // 秘钥
 const CRYPTOJSKEY = 'UGFuZGFDSU1TIQAS'

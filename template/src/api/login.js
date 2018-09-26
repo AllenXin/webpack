@@ -22,3 +22,11 @@ export function logout(userName) {
     method: 'post'
   })
 }
+
+// 获得全局filter
+export function getAllFilter(userName) {
+  return fetch({
+    url: '/config/sys-param/list-all',
+    method: 'get'
+  })
+}

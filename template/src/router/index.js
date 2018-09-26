@@ -13,7 +13,8 @@ Vue.use(Router)
  * noDropdown : if `noDropdown:true` 则没有子菜单
  **/
 export const constantRouterMap = [
-  { path: '/404', component: _import('404/index'), hidden: true }
+  { path: '/404', component: _import('404/index'), hidden: true },
+  { path: '/Login', component: _import('Login/index'), hidden: true }
 ]
 
 export default new Router({
@@ -22,6 +23,7 @@ export default new Router({
   routes: constantRouterMap
 })
 
+// todo 增加路由
 export const asyncRouterMap = [
   {
     path: '/',

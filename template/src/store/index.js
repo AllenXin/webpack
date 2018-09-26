@@ -1,3 +1,8 @@
+/**
+ * 创建于 2018/9/1
+ * 作者: PandaCIMS
+ * 功能: vuex
+ */
 import Vue from 'vue'
 import Vuex from 'vuex'
 import app from './modules/app'

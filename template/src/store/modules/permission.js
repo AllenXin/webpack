@@ -1,3 +1,9 @@
+/**
+ * 创建于 2018/9/1
+ * 作者: PandaCIMS
+ * 功能: vuex permission
+ */
+
 import { asyncRouterMap, constantRouterMap } from '@/router/index'
 import { filterAsyncRouter } from 'utils/auth'
 import * as Roles from 'api/SystemManage/roleapi.js'

@@ -11,6 +11,7 @@ import { getToken } from 'utils/stock' // 验权
 import { filterAuth } from 'utils/auth' // 权限过滤
 import 'nprogress/nprogress.css' // Progress 进度条样式
 import { MessageBox } from 'element-ui'
+import {getFilters} from 'utils/dataDictionary'
 
 const whiteList = ['/login'] // 不重定向白名单
 
@@ -23,6 +24,7 @@ router.beforeEach((to, from, next) => {
       next({ path: '/' }) // 就去Homepage
     } else { // 如果没有 Token
       if (store.getters.addRouters.length === 0 && to.path !== '/noauth') { // 初始化时
+        getFilters()                                                        // 获取数字字典
         store.dispatch('GetWebBaseMenuTree').then(({ data: baseAuth }) => { // 拉取user_info
           store.dispatch('GetUserAuthArray').then(({ data: authIdArray }) => {
             !authIdArray.length
@@ -67,3 +69,5 @@ router.beforeEach((to, from, next) => {
 router.afterEach(() => {
   NProgress.done()
 })
+
+

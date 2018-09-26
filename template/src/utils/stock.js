@@ -10,9 +10,6 @@ const Photo = 'rcp_photo' // 本地photo头
 const Mobile = 'rcp_mobile' // 本地mobile头
 const Namestr = 'rcp_userName' // 本地username头
 const Realname = 'rcp_realName' // 本地Realname头
-const CompanyId = 'rcp_companyId' // 本地Realname头
-const CompanyName = 'rcp_companyName' // 本地Realname头
-const Source = 'rcp_source' // 本地Realname头
 const Token = 'rcp_Admin-Token' // 本地Token头
 
 /**
@@ -70,17 +67,6 @@ export const getMobile = cookieGet(Mobile)
 export const setMobile = cookieSet(Mobile)
 export const removeMobile = cookieRemove(Mobile)
 
-export const getCompanyId = cookieGet(CompanyId)
-export const setCompanyId = cookieSet(CompanyId)
-export const removeCompanyId = cookieRemove(CompanyId)
-
-export const getCompanyName = cookieGet(CompanyName)
-export const setCompanyName = cookieSet(CompanyName)
-export const removeCompanyName = cookieRemove(CompanyName)
-
-export const getSource = cookieGet(Source)
-export const setSource = cookieSet(Source)
-export const removeSource = cookieRemove(Source)
 
 /**
  * 移除全部cookie
@@ -92,7 +78,4 @@ export function removeAll() {
   removePhoto()
   removeRealname()
   removeMobile()
-  removeCompanyId()
-  removeCompanyName()
-  removeSource()
 }

@@ -44,7 +44,7 @@ service.interceptors.response.use(
     // code为非20000或20001是抛错
     const res = response.data
     const config = response.config
-    if (res.token && !tokenWhiteList.includes(config.url.replace(config.baseURL, ''))) store.dispatch('resetToken', res.token)
+
     if (![20000, 20001].includes(res.code)) {
       Message({
         message: res.message,
@@ -64,9 +64,12 @@ service.interceptors.response.use(
             location.reload() // 为了重新实例化vue-router对象 避免bug
           })
         })
+      } else {
+        resetToken()
       }
       return Promise.reject(new Error('error'))
     } else {
+      resetToken()
       return response.data
     }
   },
@@ -87,13 +90,17 @@ function handleData(data) {
 
   const result = {}
   for (const key of Object.keys(data)) {
-    if (data[key] !== '' || key === 'defaultInfo') {
+    if (data[key] !== null || key === 'defaultInfo') {
       if (data[key] instanceof Date) {
         result[key] = parseTime(data[key])
       } else result[key] = data[key]
     }
   }
   return result
+}
+
+function resetToken() {
+  if (res.token && !tokenWhiteList.includes(config.url.replace(config.baseURL, ''))) store.dispatch('resetToken', res.token)
 }
 
 var changeBaseURL = function(value) {

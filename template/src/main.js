@@ -3,6 +3,9 @@ import App from './App'
 import router from './router'
 import ElementUI from 'element-ui'
 import store from './store' // noinspection ES6CheckImport
+
+import pandaVue from 'panda-vue'
+
 import * as Filters from 'utils/filters'
 import 'components/componentRegister'
 
@@ -14,8 +17,7 @@ import 'utils/global'
 
 Vue.config.productionTip = false
 Vue.use(ElementUI, { size: 'medium' })
-
-Object.keys(Filters).forEach(T => Vue.filter(T, Filters[T])) // VUE注册全局filters
+Vue.use(pandaVue)  // 组内组件
 
 /* eslint-disable no-new */
 new Vue({

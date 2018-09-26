@@ -1,3 +1,8 @@
+/**
+ * 创建于 2018/9/1
+ * 作者: PandaCIMS
+ * 功能: vuex user
+ */
 import * as Logins from '@/api/login'
 import * as Roles from 'api/SystemManage/roleapi.js'
 import * as Local from '@/utils/stock'
@@ -9,10 +14,7 @@ const user = {
     username: Local.getUsername(), // 用户名
     photo: Local.getPhoto(), // 用户头像链接
     realname: Local.getRealname(), // 用户中文名
-    mobile: Local.getMobile(), // 用户手机号
-    companyId: Local.getCompanyId(), // 用户公司id
-    companyName: Local.getCompanyName(), // 用户公司名
-    source: Local.getSource()  // 用户来源
+    mobile: Local.getMobile() // 用户手机号
   },
 
   mutations: {
@@ -39,18 +41,6 @@ const user = {
     SET_MOBILE: (state, mobile) => {
       Local.setMobile(mobile)
       state.mobile = mobile
-    },
-    SET_COMPANYID: (state, companyId) => {
-      Local.setCompanyId(companyId)
-      state.companyId = companyId
-    },
-    SET_COMPANYNAME: (state, companyName) => {
-      Local.setCompanyName(companyName)
-      state.companyName = companyName
-    },
-    SET_SOURCE: (state, source) => {
-      Local.setSource(source)
-      state.source = source
     }
   },
 
@@ -68,9 +58,6 @@ const user = {
           commit('SET_PHOTO', respdata.data.photo)
           commit('SET_REALNAME', respdata.data.realName)
           commit('SET_MOBILE', respdata.data.mobile)
-          commit('SET_COMPANYID', respdata.data.companyId)
-          commit('SET_COMPANYNAME', respdata.data.companyName)
-          commit('SET_SOURCE', respdata.data.source)
           resolve()
         }).catch(error => {
           reject(error)
@@ -84,7 +71,7 @@ const user = {
         Roles.getUserAuthArray(state.uid)
           .then(resp => {
             if (resp.data && resp.data.length) resolve(resp)
-            resolve({ code: 20000, data: [100000, 150000, 151000, 151100] })
+            resolve({ code: 20000, data: [100000] })   // todo  如果有默认菜单 在这里加
           })
           .catch(err => reject(err))
       })
@@ -112,9 +99,6 @@ const user = {
             commit('SET_PHOTO', '')
             commit('SET_REALNAME', '')
             commit('SET_MOBILE', '')
-            commit('SET_COMPANYID', '')
-            commit('SET_COMPANYNAME', '')
-            commit('SET_SOURCE', '')
             Local.removeAll()
           }
           resolve()
@@ -133,9 +117,6 @@ const user = {
         commit('SET_PHOTO', '')
         commit('SET_REALNAME', '')
         commit('SET_MOBILE', '')
-        commit('SET_COMPANYID', '')
-        commit('SET_COMPANYNAME', '')
-        commit('SET_SOURCE', '')
         Local.removeAll()
         resolve()
       })
