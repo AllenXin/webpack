@@ -10,7 +10,6 @@ import NProgress from 'nprogress' // Progress 进度条
 import { getToken } from 'utils/stock' // 验权
 import { filterAuth } from 'utils/auth' // 权限过滤
 import 'nprogress/nprogress.css' // Progress 进度条样式
-import { MessageBox } from 'element-ui'
 import {getFilters} from 'utils/dataDictionary'
 
 const whiteList = ['/login'] // 不重定向白名单

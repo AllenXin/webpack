@@ -65,11 +65,11 @@ service.interceptors.response.use(
           })
         })
       } else {
-        resetToken()
+        resetToken(res, config)
       }
       return Promise.reject(new Error('error'))
     } else {
-      resetToken()
+      resetToken(res, config)
       return response.data
     }
   },
@@ -99,7 +99,7 @@ function handleData(data) {
   return result
 }
 
-function resetToken() {
+function resetToken(res, config) {
   if (res.token && !tokenWhiteList.includes(config.url.replace(config.baseURL, ''))) store.dispatch('resetToken', res.token)
 }
 

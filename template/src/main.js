@@ -6,7 +6,6 @@ import store from './store' // noinspection ES6CheckImport
 
 import pandaVue from 'panda-vue'
 
-import * as Filters from 'utils/filters'
 import 'components/componentRegister'
 
 import '@/permission' // 路由守卫处理权限

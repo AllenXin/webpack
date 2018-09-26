@@ -3,14 +3,15 @@
  * 作者: Xinwang
  * 功能: 数据字典处理
  */
-
+import Vue from 'vue'
+import store from '../store'
 import {getAllFilter} from 'api/login'
 
 // 添加数据字典到vuex 全局注册filter
 export function getFilters() {
   getAllFilter().then(res => {
     const state = {}
-    const getters = {}
+    // const getters = {}
     for (const key in res.data) {
       state[handleFilterName(key)] =  res.data[key]
       // getters[handleFilterName(key)] = function(state) {
