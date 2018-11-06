@@ -67,7 +67,6 @@ export const getMobile = cookieGet(Mobile)
 export const setMobile = cookieSet(Mobile)
 export const removeMobile = cookieRemove(Mobile)
 
-
 /**
  * 移除全部cookie
  */
