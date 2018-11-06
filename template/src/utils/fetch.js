@@ -100,7 +100,9 @@ function handleData(data) {
 }
 
 function resetToken(res, config) {
-  if (res.token && !tokenWhiteList.includes(config.url.replace(config.baseURL, ''))) store.dispatch('resetToken', res.token)
+  if (!tokenWhiteList.includes(config.url.replace(config.baseURL, ''))) {
+    store.dispatch('resetToken')
+  }
 }
 
 var changeBaseURL = function(value) {

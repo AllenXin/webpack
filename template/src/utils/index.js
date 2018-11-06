@@ -35,9 +35,9 @@ export function formatTime(time, option) {
   time = +time * 1000
   const d = new Date(time)
   const now = Date.now()
-  
+
   const diff = (now - d) / 1000
-  
+
   if (diff < 30) {
     return '刚刚'
   } else if (diff < 3600) { // less 1 hour
@@ -170,60 +170,60 @@ export function roundTimeOff(time) {
  */
 export const Base64 = {
   _keyStr: 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=',
-  
+
   // public method for encoding
   encode: function(input) {
     let output = ''
     let chr1, chr2, chr3, enc1, enc2, enc3, enc4
     let i = 0
-    
+
     input = Base64._utf8_encode(input)
-    
+
     while (i < input.length) {
       chr1 = input.charCodeAt(i++)
       chr2 = input.charCodeAt(i++)
       chr3 = input.charCodeAt(i++)
-      
+
       enc1 = chr1 >> 2
       enc2 = ((chr1 & 3) << 4) | (chr2 >> 4)
       enc3 = ((chr2 & 15) << 2) | (chr3 >> 6)
       enc4 = chr3 & 63
-      
+
       if (isNaN(chr2)) {
         enc3 = enc4 = 64
       } else if (isNaN(chr3)) {
         enc4 = 64
       }
-      
+
       output = output +
         this._keyStr.charAt(enc1) + this._keyStr.charAt(enc2) +
         this._keyStr.charAt(enc3) + this._keyStr.charAt(enc4)
     }
-    
+
     return output
   },
-  
+
   // public method for decoding
   decode: function(input) {
     let output = ''
     let chr1, chr2, chr3
     let enc1, enc2, enc3, enc4
     let i = 0
-    
+
     input = input.replace(/[^A-Za-z0-9+\/=]/g, '')
-    
+
     while (i < input.length) {
       enc1 = this._keyStr.indexOf(input.charAt(i++))
       enc2 = this._keyStr.indexOf(input.charAt(i++))
       enc3 = this._keyStr.indexOf(input.charAt(i++))
       enc4 = this._keyStr.indexOf(input.charAt(i++))
-      
+
       chr1 = (enc1 << 2) | (enc2 >> 4)
       chr2 = ((enc2 & 15) << 4) | (enc3 >> 2)
       chr3 = ((enc3 & 3) << 6) | enc4
-      
+
       output = output + String.fromCharCode(chr1)
-      
+
       if (enc3 !== 64) {
         output = output + String.fromCharCode(chr2)
       }
@@ -231,20 +231,20 @@ export const Base64 = {
         output = output + String.fromCharCode(chr3)
       }
     }
-    
+
     output = Base64._utf8_decode(output)
-    
+
     return output
   },
-  
+
   // private method for UTF-8 encoding
   _utf8_encode: function(string) {
     string = string.replace(/\r\n/g, '\n')
     let utftext = ''
-    
+
     for (let n = 0; n < string.length; n++) {
       const c = string.charCodeAt(n)
-      
+
       if (c < 128) {
         utftext += String.fromCharCode(c)
       } else if ((c > 127) && (c < 2048)) {
@@ -256,10 +256,10 @@ export const Base64 = {
         utftext += String.fromCharCode((c & 63) | 128)
       }
     }
-    
+
     return utftext
   },
-  
+
   // private method for UTF-8 decoding
   _utf8_decode: function(utftext) {
     let string = ''
@@ -267,10 +267,10 @@ export const Base64 = {
     let c = 0
     let c2 = 0
     let c3 = 0
-    
+
     while (i < utftext.length) {
       c = utftext.charCodeAt(i)
-      
+
       if (c < 128) {
         string += String.fromCharCode(c)
         i++
@@ -285,9 +285,95 @@ export const Base64 = {
         i += 3
       }
     }
-    
+
     return string
   }
-  
+
 }
+
+/**
+ * 删除数组中key与item相同的的元素
+ * @param array
+ * @param item
+ * @param key
+ */
+export function removeItemInArray(array, item, key) {
+  if (key) {
+    let sub = array.findIndex(T => T[key] === item[key])
+    array.splice(sub, 1)
+  } else {
+    let sub = array.findIndex(T => T === item)
+    array.splice(sub, 1)
+  }
+}
+
+/**
+ * 返回getter中的过滤器函数
+ * @param key 索引
+ */
+export const rowFilter = key => (row, column, val, idx) => store.getters.getFilterFunc(key)(row[key])
+
+/**
+ * 用在scope中的过滤器函数
+ * @param key
+ */
+export const scopeFilter = key => (idx, row) => store.getters.getFilterFunc(key)(row[key])
+
+/**
+ * 用户自定义的过滤器函数
+ * @param key 函数名
+ */
+export const userFilter = key => UserFilter[key]
+
+/**
+ * 添加日期并且格式化
+ * @param date 初始日期
+ * @param amount 添加的天数
+ * @returns {*} 格式化后的日期
+ */
+export const addDaysFormate = (date, amount) => parseTime(addDays(date, amount))
+
+/**
+ * 生成简单表格校验
+ * @param key validate的key
+ * @param msg 校验信息
+ * @return {Function}
+ * @param that
+ */
+export const formValidateGene = (key, msg, that) => (rule, value, cb) => {
+  if (Validate[key](value)) {
+    cb()
+  } else {
+    _undefined(that.errMsg) || (that.errMsg = msg)
+    cb(new Error(msg))
+  }
+}
+
+/* 生成非空表单校验 */
+export const notemptyGene = (msg, that) => (rule, value, cb) => {
+  if (value === '' || _isNil(value)) {
+    _undefined(that.errMsg) || (that.errMsg = msg)
+    cb(new Error('msg'))
+  } else {
+    cb()
+  }
+}
+
+/* 取值时间校验 */
+export const planTimeGene = (key, that) => (rule, value, callback) => {
+  const planBeginTime = _get(that[key], rule.fullField.replace(/.\w+$/, '.planBeginTime'))
+  const planEndTime = _get(that[key], rule.fullField.replace(/.\w+$/, '.planEndTime'))
+  if (planBeginTime && planEndTime && _isBefore(planEndTime, planBeginTime)) {
+    _undefined(that.errMsg) || (that.errMsg = '计划完成时间不能在计划开始时间之前！')
+    callback(new Error('计划完成时间不能在计划开始时间之前！'))
+  } else {
+    callback()
+  }
+}
+
+/**
+ * 去除时分秒
+ * @param key 要去除的key
+ */
+export const rmHour = key => (row, column) => parseTime(row[key], '{y}-{m}-{d}')
 

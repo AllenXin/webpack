@@ -18,10 +18,11 @@ router.beforeEach((to, from, next) => {
   NProgress.start()
   if (getToken()) { // 如果已经有 Token
     if (to.path === '/login') { // 还要访问登陆页面
+      NProgress.done()
       next({ path: '/' }) // 就去Homepage
     } else { // 如果没有 Token
       if (store.getters.addRouters.length === 0 && to.path !== '/noauth') { // 初始化时
-        getFilters()                                                        // 获取数字字典
+        getFilters()                                                        // 获取数字字典 todo 初始情况可能没有数据字典接口
         store.dispatch('GetWebBaseMenuTree').then(({ data: baseAuth }) => { // 拉取user_info
           store.dispatch('GetUserAuthArray').then(({ data: authIdArray }) => {
             !authIdArray.length

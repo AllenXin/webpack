@@ -15,7 +15,7 @@
       <!--有下拉菜单-->
       <el-submenu :index="item.name" v-if="!item.noDropdown&&!item.hidden">
         <template slot="title">
-          <img v-if='item.icon' :src="require('assets/'+item.icon+'.png')"/>
+          <!--<img v-if='item.icon' :src="require('assets/'+item.icon+'.png')"/>-->
           <span class='title'>\{{item.name}}</span>
         </template>
         <template v-for="child in item.children" v-if='!child.hidden'>

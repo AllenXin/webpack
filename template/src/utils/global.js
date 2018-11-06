@@ -1,3 +1,7 @@
-// global.SUPERADMINID = 0                                                    // superAdmin ID
-// global.COMPANYMANAGERROLE = 1                                              // 企业管理员权限 ID
-// global.PANDAID = 1                                                         // 熊猫公司 ID
+/**
+ * 创建于 2018/10/10
+ * 功能: 全局变量
+ */
+
+// global.SUPERADMIN_ID = 0                                                    // superAdmin ID
+

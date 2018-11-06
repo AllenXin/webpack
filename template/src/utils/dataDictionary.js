@@ -9,25 +9,17 @@ import {getAllFilter} from 'api/login'
 
 // 添加数据字典到vuex 全局注册filter
 export function getFilters() {
-  getAllFilter().then(res => {
+  getAllFilter().then(({ data }) => {
     const state = {}
-    // const getters = {}
-    for (const key in res.data) {
-      state[handleFilterName(key)] =  res.data[key]
-      // getters[handleFilterName(key)] = function(state) {
-      //   return res.data[key]
-      // }
-    }
+    Object.keys(data).forEach(key => state[handleFilterName(key)] = data[key])
     // 动态注册vuex
-    store.registerModule('filter', {
-      // getters,
-      state
-    })
+    store.registerModule('filter', { state })
+
     // 全局注册filter
     for (const key of Object.keys(state)) {
       Vue.filter(key, function(value) {
         const item = store.state.filter[key].find(item => item.paramValue === value)
-        return (item && item.paramDesc) || value
+        return (item && item.paramDesc) || ''
       })
     }
   })
@@ -36,9 +28,9 @@ export function getFilters() {
 // 获得过滤结果
 export function getFilter(key, paramValue) {
   const itemList = store.state.filter[key]
-  if (!itemList || itemList.length === 0) return paramValue
+  if (!itemList || itemList.length === 0) return ''
   const item = store.state.filter[key].find(item => item.paramValue === paramValue)
-  return (item && item.paramDesc) || paramValue
+  return (item && item.paramDesc) || ''
 }
 
 // _转驼峰

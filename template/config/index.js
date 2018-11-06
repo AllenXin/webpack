@@ -46,11 +46,14 @@ module.exports = {
   build: {
     // Template for index.html
     index: path.resolve(__dirname, '../dist/index.html'), //  todo 项目名
+    // index: process.env.TOBACKEND === 'true' ? path.resolve(__dirname, '../casc_wms_develop/index.html') : path.resolve(__dirname, '../casc_wms/index.html'),
 
     // Paths
     assetsRoot: path.resolve(__dirname, '../dist'),//  todo 项目名
+    // assetsRoot: process.env.TOBACKEND === 'true' ? path.resolve(__dirname, '../casc_wms_develop') : path.resolve(__dirname, '../casc_wms'),
     assetsSubDirectory: 'static',
     assetsPublicPath: './',
+    // assetsPublicPath: process.env.TOBACKEND === 'true' ? '/casc_wms_develop/' : '/casc_wms/',
 
     /**
      * Source Maps
